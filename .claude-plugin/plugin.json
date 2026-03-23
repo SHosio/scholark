@@ -1,0 +1,11 @@
+{
+  "name": "scholark",
+  "version": "0.1.0",
+  "description": "Research intelligence suite for HCI researchers — literature search, study design, analysis planning, and critical review",
+  "author": {
+    "name": "Simo Hosio",
+    "url": "https://github.com/SHosio"
+  },
+  "repository": "https://github.com/SHosio/scholark",
+  "license": "MIT"
+}
