@@ -15,13 +15,14 @@ For full-powered academic literature search, pair with [Scholark-1](https://gith
 - `/scholark:study-design` — Formalize a study design: variables, conditions, counterbalancing, participants, procedure
 - `/scholark:analysis-plan` — Pre-specify statistical and qualitative analysis with assumption checks and violation handling
 - `/scholark:study-validator` — Completeness checklist that flags missing elements reviewers would catch
+- `/scholark:paper-review` — Pre-submission review against common rejection patterns at top HCI venues
 - `/scholark:literature-blind-spots` — Analyze a draft paper for citation gaps and find real papers to fill them
 
 ### What works without Scholark-1
 
 The **study-design**, **analysis-plan**, and **study-validator** skills work fully on their own — no MCP needed.
 
-The **research-brainstorm** skill works partially: the ideator agent can still use web search, but the critic agent loses its ability to ground critiques in published work.
+The **research-brainstorm** and **paper-review** skills work partially: brainstorm's critic agent loses its ability to ground critiques in published work, and paper-review can't verify claims against literature.
 
 The **literature-blind-spots** skill requires Scholark-1 — it cannot run without it.
 

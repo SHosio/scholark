@@ -21,7 +21,7 @@ For each dependent variable, cover:
   - **One IV, two levels, within:** Paired samples t-test (or Wilcoxon signed-rank)
   - **One IV, 3+ levels, between:** One-way ANOVA (or Kruskal-Wallis)
   - **One IV, 3+ levels, within:** Repeated-measures ANOVA (or Friedman)
-  - **Two+ IVs, mixed:** Mixed-design ANOVA (or aligned rank transform)
+  - **Two+ IVs, mixed:** Mixed-design ANOVA (or aligned rank transform — ART). ART (Wobbrock et al., 2011) is widely used in HCI for nonparametric factorial analyses. Use it when assumptions of normality or homogeneity are violated in factorial designs. It ranks the data in a way that preserves interaction effects, unlike simpler rank transforms.
   - **Continuous predictors:** Linear regression, linear mixed models
   - **Count/categorical DV:** Chi-square, logistic regression, Poisson regression
   - **Likert-scale data:** Discuss parametric vs. non-parametric debate — ordinal logistic regression as robust alternative
@@ -39,11 +39,13 @@ For each dependent variable, cover:
 - Pairwise comparisons with adjusted p-values
 
 ### Effect Sizes
-- **t-tests:** Cohen's d (small=0.2, medium=0.5, large=0.8)
-- **ANOVA:** Partial eta-squared (small=0.01, medium=0.06, large=0.14) or generalized eta-squared
+- **t-tests:** Cohen's d
+- **ANOVA:** Partial eta-squared or generalized eta-squared
 - **Chi-square:** Cramér's V
 - **Regression:** R², adjusted R²
 - Always report confidence intervals for effect sizes when possible
+- **Report effect sizes and confidence intervals as the primary result, with p-values as supplementary.** The HCI community is moving toward estimation-based reporting.
+- **Avoid relying on Cohen's generic benchmarks** (small=0.2/0.01, medium=0.5/0.06, large=0.8/0.14). These are rules of thumb that don't map well to HCI-specific domains. Instead, derive expected effect sizes from comparable published studies. If the user needs domain-specific benchmarks, point them to Ortloff et al. (2025) "Small, Medium, Large? A Meta-Study of Effect Sizes at CHI."
 
 ### Multiple Comparisons
 - If testing multiple DVs: how to handle family-wise error rate
@@ -55,16 +57,22 @@ For each dependent variable, cover:
 If the study includes qualitative data (interviews, open-ended responses, think-aloud protocols):
 
 ### Coding Approach
-- **Thematic analysis** (Braun & Clarke) — inductive or deductive? Semantic or latent?
-- **Grounded theory** — constant comparison, theoretical sampling, saturation
-- **Content analysis** — frequency-based, category development
-- **Affinity diagramming** — for design-oriented research
+
+Match the method to the research goals. These are not interchangeable — each carries different epistemological commitments:
+
+- **Reflexive thematic analysis** (Braun & Clarke, 2006; updated 2019, 2024) — The dominant qualitative method in HCI. Inductive or deductive? Semantic or latent? Note: TA is a *family* of methods. Reflexive TA treats themes as constructed through interpretation, not "discovered" or "emergent." Subjectivity is the analytical engine, not a threat.
+- **Content analysis** — Lighter-weight, frequency-based approach. Good for systematic categorization of responses (e.g., open-ended survey questions). Less interpretive depth than thematic analysis, but appropriate when the goal is to quantify qualitative patterns rather than deeply interpret meaning.
+- **Grounded theory** — constant comparison, theoretical sampling, saturation. Use when building theory from data, not testing existing frameworks.
+- **Affinity diagramming** — for design-oriented research, collaborative sense-making
 
 ### Rigor
-- **Inter-rater reliability:** Cohen's kappa or Krippendorff's alpha. How many raters? What threshold? (kappa > 0.7 typically acceptable)
-- **Codebook development:** Initial codes → pilot coding → discussion → refined codebook
-- **Saturation:** How will you determine when to stop? Data-driven saturation assessment
-- **Member checking / triangulation** if applicable
+
+Rigor looks different depending on the qualitative approach:
+
+- **For reflexive TA:** Inter-rater reliability (Cohen's kappa, etc.) is **not appropriate** — Braun & Clarke's 2024 RTARG guidelines explicitly state this. Reflexive TA relies on researcher subjectivity as a resource. Quality is assessed through reflexivity, thick description, and coherence, not coder agreement. Do not recommend IRR for reflexive TA.
+- **For content analysis or codebook TA:** Inter-rater reliability IS appropriate — Cohen's kappa or Krippendorff's alpha. How many raters? What threshold? (kappa > 0.7 typically acceptable). Codebook development: initial codes → pilot coding → discussion → refined codebook.
+- **For grounded theory:** Theoretical saturation — how will you determine when to stop? Document the saturation assessment process.
+- **Member checking / triangulation** if applicable — valuable across methods but not universally required.
 
 ### Reporting
 - Example quotes with participant identifiers

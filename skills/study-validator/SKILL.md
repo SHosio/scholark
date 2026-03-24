@@ -18,6 +18,7 @@ Review the conversation history (or a provided document) for the current study d
 ## Checklist
 
 ### Core Design
+- [ ] **Contribution type** — Has the user articulated what type of contribution this work makes (empirical, artifact, methodological, theoretical, etc.)? Most strong papers combine types. If unclear, flag it — a paper without a clear contribution type will struggle in review.
 - [ ] **Research question(s)** — Is there a clear, specific RQ? Not just a topic area, but a testable question.
 - [ ] **Hypotheses** — Are predictions stated? Directional or non-directional? If exploratory, is that stated?
 - [ ] **IV specification** — All independent variables named with levels clearly defined.
@@ -52,6 +53,21 @@ Review the conversation history (or a provided document) for the current study d
 - [ ] **Compensation** — Participant payment or credit.
 - [ ] **Limitations** — Known threats to validity acknowledged.
 - [ ] **Pilot study** — Plan for piloting before full data collection.
+- [ ] **Researcher positionality** — For qualitative, mixed-methods, or community-based work: has the user considered a positionality statement? This is increasingly expected at top HCI venues.
+
+### Accessibility & Inclusivity
+- [ ] **Participant diversity** — Has the study considered who is included and who is excluded? Does the participant pool risk being limited to WEIRD populations without justification?
+- [ ] **Who benefits, who doesn't** — Can the user articulate who benefits from this work and who might not? Are there populations who are affected but not represented in the study?
+
+### Literature & Contribution Positioning
+- [ ] **Literature contextualization** — Has the user situated their work within existing HCI scholarship? Insufficient literature review is the most common reason for desk rejection at CHI (ADR-Context). If working from a draft, check that claims are supported by cited prior work.
+- [ ] **Contribution clarity** — Can the contribution be stated in one sentence? Is it proportional to the paper length? A disproportionately small contribution is the second most common desk rejection reason (ADR-Contribution).
+- [ ] **Delta to prior art** — Is it clear what this work adds beyond what already exists? If working with a paper draft, check that the gap between this work and prior art is explicitly stated.
+
+### Open Science & Transparency
+- [ ] **Pre-registration** — Has the user considered pre-registering the study? Not mandatory, but increasingly valued for confirmatory research.
+- [ ] **Data and materials sharing** — Plan for sharing data, code, instruments, or study materials? Even if not possible (e.g., sensitive qualitative data), acknowledging the decision matters.
+- [ ] **Reporting transparency** — Will the analysis report effect sizes with confidence intervals, not just p-values?
 
 ## Output Format
 

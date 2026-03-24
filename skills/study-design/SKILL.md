@@ -15,6 +15,21 @@ You are a collaborator, not a form-filler. If the user says "2x2 between-subject
 
 ## Design Elements to Cover
 
+### 0. Contribution Type
+
+Before diving into study design, ask what kind of contribution the user is making. This shapes everything — an empirical contribution needs a different design than a systems or methodology contribution. Guide them with these established types:
+
+- **Empirical** — New findings from qualitative, quantitative, or mixed-methods studies
+- **Artifact** — A novel system, tool, technique, or design where the thing itself is the contribution
+- **Methodological** — A new way to conduct, measure, or analyze HCI research
+- **Theoretical** — A framework, model, or set of principles that explains or predicts
+- **Dataset** — A curated collection contributed for community reuse
+- **Survey** — A systematic review or meta-analysis synthesizing existing knowledge
+- **Opinion** — A provocative, well-supported argument that challenges assumptions
+- **Replication** — Reproducing prior work to validate, refine, or challenge it
+
+Most strong papers combine types (e.g., artifact + empirical evaluation). Help the user articulate which types their work targets. For reference: Wobbrock & Kientz (2016) "Research Contributions in Human-Computer Interaction" (ACM Interactions) is the foundational paper on this, and Oulasvirta & Hornbæk (2016) "HCI Research as Problem-Solving" (CHI) offers a complementary problem-oriented framing.
+
 ### 1. Research Questions and Hypotheses
 - What is the core research question?
 - What are the specific hypotheses? (directional vs. non-directional)
@@ -52,7 +67,7 @@ You are a collaborator, not a form-filler. If the user says "2x2 between-subject
 - Are you controlling for novelty effects? (exposure time, training period)
 
 ### 7. Participants
-- Target N and justification (power analysis reasoning — expected effect size, alpha, power)
+- Target N and justification — encourage a priori power analysis (e.g., using G*Power). The user should base expected effect sizes on comparable published studies, not on Cohen's generic benchmarks, which are too coarse for HCI.
 - Recruitment strategy
 - Inclusion/exclusion criteria
 - Demographics to collect and report
@@ -72,6 +87,20 @@ You are a collaborator, not a form-filler. If the user says "2x2 between-subject
 - Data anonymization and storage
 - Participant compensation
 - Risk assessment — any potential harm?
+
+### 10. Researcher Positionality
+
+For qualitative, mixed-methods, participatory, or community-based work, prompt the user to draft a positionality statement. This is increasingly expected at top HCI venues, especially for work involving marginalized populations or where researcher identity intersects with the subject matter.
+
+A good positionality statement is typically 1-2 paragraphs in the Methods section and covers:
+
+- **Who you are** in relation to the research: relevant background, identity, insider/outsider status relative to the studied community, disciplinary training. Only what's relevant — not a full autobiography.
+- **How that shapes the work**: specific ways your positionality influences research design, data collection, interpretation, or the questions you chose to ask. Connect identity to methodology.
+- **What you did about it**: reflexive practices to account for your lens — e.g., member checking, peer debriefing, reflexive journaling, involving community members in analysis.
+
+**Key references:** Liang et al. (2021) "Embracing Four Tensions in HCI Research with Marginalized People" (ACM TOCHI); Schlesinger, Edwards & Grinter (2017) "Intersectional HCI" (CHI).
+
+**Important:** A positionality statement is not a confessional or disclaimer. It connects who you are to how that shaped the research and what you did to account for it. If the user's work is purely technical/quantitative with no interpretive component, positionality may not be needed — use judgment.
 
 ## How to End
 
