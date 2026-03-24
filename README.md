@@ -1,10 +1,6 @@
 # Scholark
 
-An opinionated research companion for HCI researchers, built as a Claude Code plugin.
-
-This plugin encapsulates the methodology philosophy and research thinking of its creator, [Dr. Simo Hosio](https://github.com/SHosio), shaped by years of publishing and reviewing in the field of Human-Computer Interaction. It is not a neutral tool — it reflects specific views on what makes rigorous HCI research, how studies should be designed, and what reviewers at top venues look for.
-
-**The right way to use this is to disagree with it.** Fork the plugin, use the skills on your own research, and when something doesn't match your field or your perspective — tell Claude to fix it. The skills are just markdown files. Every disagreement is an opportunity to encode your own expertise. Over time, the plugin becomes a living reflection of your lab's methodology standards.
+A Claude Code plugin for HCI researchers. Skills and agents that support the research workflow from ideation through manuscript finalization.
 
 For full-powered academic literature search, pair with [Scholark-1](https://github.com/SHosio/scholark-1) — the MCP server that searches Semantic Scholar, OpenAlex, Crossref, and Europe PMC in parallel.
 
@@ -88,6 +84,12 @@ The literature blind spots skill works independently — point it at a draft pap
 
 - [Claude Code](https://claude.ai/code) with plugin support
 - [Scholark-1](https://github.com/SHosio/scholark-1) for literature search features (recommended, not required)
+
+## Philosophy
+
+The skills in this plugin are grounded in established HCI methodology — contribution type frameworks (Wobbrock & Kientz, 2016), current CHI reviewing standards, reflexive thematic analysis (Braun & Clarke), estimation-based statistical reporting, and open science practices. On top of that foundation, the current version reflects the personal opinions and reviewing experience of [Dr. Simo Hosio](https://github.com/SHosio). It is opinionated by design.
+
+**You should adapt it.** Fork the repo, use the skills on your own work, and when something doesn't fit your field or your perspective — tell Claude to change it. The skills are markdown files. Every disagreement is a chance to encode your own expertise. Over time, the plugin becomes a living reflection of your methodology standards.
 
 ## Workshops
 
