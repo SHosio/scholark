@@ -1,6 +1,10 @@
 # Scholark
 
-A Claude Code plugin for HCI researchers. Bundles research design skills and specialized agents to support the workflow from ideation through manuscript finalization.
+An opinionated research companion for HCI researchers, built as a Claude Code plugin.
+
+This plugin encapsulates the methodology philosophy and research thinking of its creator, [Dr. Simo Hosio](https://github.com/SHosio), shaped by years of publishing and reviewing in the field of Human-Computer Interaction. It is not a neutral tool — it reflects specific views on what makes rigorous HCI research, how studies should be designed, and what reviewers at top venues look for.
+
+**The right way to use this is to disagree with it.** Fork the plugin, use the skills on your own research, and when something doesn't match your field or your perspective — tell Claude to fix it. The skills are just markdown files. Every disagreement is an opportunity to encode your own expertise. Over time, the plugin becomes a living reflection of your lab's methodology standards.
 
 For full-powered academic literature search, pair with [Scholark-1](https://github.com/SHosio/scholark-1) — the MCP server that searches Semantic Scholar, OpenAlex, Crossref, and Europe PMC in parallel.
 
@@ -84,6 +88,10 @@ The literature blind spots skill works independently — point it at a draft pap
 
 - [Claude Code](https://claude.ai/code) with plugin support
 - [Scholark-1](https://github.com/SHosio/scholark-1) for literature search features (recommended, not required)
+
+## Workshops
+
+Dr. Simo Hosio is available for hire to give workshops on Claude Code for academic work — from installing and using these tools to forking and customizing them for your own field. [Get in touch.](https://github.com/SHosio)
 
 ## License
 
