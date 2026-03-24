@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "scholark-1": {
-      "command": "uvx",
-      "args": ["--from", "git+https://github.com/SHosio/scholark-1", "scholark-1"]
-    }
-  }
-}

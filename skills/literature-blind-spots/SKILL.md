@@ -5,6 +5,8 @@ description: Analyze a draft paper for literature gaps and find real papers to f
 
 # Literature Blind Spots
 
+> **Requires [Scholark-1](https://github.com/SHosio/scholark-1) MCP.** Before proceeding, check if scholark-1 tools are available in this session. If not, tell the user: "This skill requires the Scholark-1 MCP server for academic literature search. Install it in your project from https://github.com/SHosio/scholark-1 and add it to your project's `.mcp.json`." Then stop.
+
 Analyze a draft paper to identify gaps in its literature coverage, then use the scholark-1 MCP tools to find real papers that could fill those gaps. Output an HTML file the user can read and act on.
 
 **This skill works well as a background task.** If the user wants, they can say "run this in the background and let me know when done."

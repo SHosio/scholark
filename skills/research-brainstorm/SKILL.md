@@ -5,6 +5,8 @@ description: Brainstorm research ideas from multiple angles using divergent idea
 
 # Research Brainstorm
 
+> **Best with [Scholark-1](https://github.com/SHosio/scholark-1) MCP.** Before dispatching agents, check if scholark-1 tools are available in this session. If not, tell the user: "This skill works best with the Scholark-1 MCP server for academic literature search. The agents can still brainstorm using web search, but for grounded academic critique, install Scholark-1 from https://github.com/SHosio/scholark-1 and add it to your project's `.mcp.json`." Then continue — the skill still works, but the critic agent will be limited.
+
 Help the user explore a research question from multiple angles by generating divergent ideas and subjecting them to rigorous critique, then converging on the 2-3 strongest options.
 
 ## Step 1: Understand the Research Question

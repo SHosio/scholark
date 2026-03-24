@@ -1,13 +1,10 @@
 # Scholark
 
-A Claude Code plugin for HCI researchers. Bundles the [Scholark-1](https://github.com/SHosio/scholark-1) literature search MCP with research design skills and specialized agents.
+A Claude Code plugin for HCI researchers. Bundles research design skills and specialized agents to support the workflow from ideation through manuscript finalization.
+
+For full-powered academic literature search, pair with [Scholark-1](https://github.com/SHosio/scholark-1) — the MCP server that searches Semantic Scholar, OpenAlex, Crossref, and Europe PMC in parallel.
 
 ## What's Included
-
-### MCP Server (via Scholark-1)
-- Search 4 academic databases in parallel (Semantic Scholar, OpenAlex, Crossref, Europe PMC)
-- Fetch paper details, BibTeX, open access PDFs, citation context
-- All results deduplicated by DOI with explicit source attribution
 
 ### Agents
 - **research-ideator** — Creative, web-augmented agent that generates divergent research ideas from current trends, adjacent fields, and unconventional angles
@@ -20,12 +17,56 @@ A Claude Code plugin for HCI researchers. Bundles the [Scholark-1](https://githu
 - `/scholark:study-validator` — Completeness checklist that flags missing elements reviewers would catch
 - `/scholark:literature-blind-spots` — Analyze a draft paper for citation gaps and find real papers to fill them
 
+### What works without Scholark-1
+
+The **study-design**, **analysis-plan**, and **study-validator** skills work fully on their own — no MCP needed.
+
+The **research-brainstorm** skill works partially: the ideator agent can still use web search, but the critic agent loses its ability to ground critiques in published work.
+
+The **literature-blind-spots** skill requires Scholark-1 — it cannot run without it.
+
 ## Install
 
+### 1. Install the plugin
+
 ```bash
-# In Claude Code
-/plugin install scholark
+git clone https://github.com/SHosio/scholark.git
+claude plugin add ./scholark
 ```
+
+This gives you the skills and agents. They work in any project.
+
+### 2. Install Scholark-1 (recommended)
+
+To unleash the full power of brainstorming, critique, and literature blind spot analysis, install the [Scholark-1](https://github.com/SHosio/scholark-1) MCP server in your research project:
+
+```bash
+git clone https://github.com/SHosio/scholark-1.git
+cd scholark-1
+cp .env.example .env
+# Edit .env with your API keys (optional — most tools work without them)
+```
+
+Then add it to your research project's `.mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "scholark-1": {
+      "command": "uv",
+      "args": ["run", "--directory", "/path/to/scholark-1", "scholark-1"]
+    }
+  }
+}
+```
+
+### 3. Configure API keys (optional)
+
+In your Scholark-1 `.env` file:
+
+- `SEMANTIC_SCHOLAR_API_KEY` — Higher rate limits (free key from [semanticscholar.org](https://www.semanticscholar.org/product/api))
+- `OPENALEX_EMAIL` — Polite pool priority (just your email, no signup)
+- `UNPAYWALL_EMAIL` — Required only for open access PDF lookup (just your email)
 
 ## Workflow
 
@@ -41,7 +82,7 @@ The literature blind spots skill works independently — point it at a draft pap
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) with plugin support
-- [Scholark-1](https://github.com/SHosio/scholark-1) is installed automatically via the plugin's MCP configuration
+- [Scholark-1](https://github.com/SHosio/scholark-1) for literature search features (recommended, not required)
 
 ## License
 
