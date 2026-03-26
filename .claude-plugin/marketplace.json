@@ -1,0 +1,15 @@
+{
+  "name": "scholark",
+  "owner": {
+    "name": "Simo Hosio",
+    "url": "https://github.com/SHosio"
+  },
+  "description": "Research intelligence plugins for HCI researchers",
+  "plugins": [
+    {
+      "name": "scholark",
+      "source": ".",
+      "description": "Research design skills and agents for HCI researchers"
+    }
+  ]
+}

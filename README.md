@@ -30,17 +30,17 @@ The **literature-blind-spots** skill requires Scholark-1 — it cannot run witho
 
 ### 1. Install the plugin
 
-```bash
-git clone https://github.com/SHosio/scholark.git
-claude plugin marketplace add ./scholark
-claude plugin install scholark
+From inside Claude Code, run:
+
+```
+/plugin marketplace add SHosio/scholark
+/plugin install scholark@scholark
 ```
 
-This installs the plugin for your user (available in all projects). To install it for a single project only, run from that project's directory:
+This installs the plugin for your user (available in all projects). To install it for a single project only, choose "project" scope when prompted, or:
 
-```bash
-claude plugin marketplace add /path/to/scholark
-claude plugin install scholark --scope project
+```
+/plugin install scholark@scholark --scope project
 ```
 
 ### 2. Install Scholark-1 (recommended)
