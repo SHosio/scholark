@@ -106,3 +106,14 @@ Point to relevant skills:
 - **Distinguish fixable from fatal.** A missing positionality statement is fixable. A fundamental confound in the study design is potentially fatal. Rate accordingly.
 - **Don't flag style preferences.** This is not about your preferred writing style. Focus on issues that would cause rejection.
 - **Ground your review in what top HCI venues actually expect.** Not generic academic writing advice.
+
+## Citation Accuracy — CRITICAL
+
+If the review touches references, author names, DOIs, or publication metadata:
+
+1. **Never trust your own knowledge of authors or titles.** Your training data will cause you to "recognize" famous researchers where they don't belong. This is hallucination.
+2. **DOI metadata over gut feeling.** If metadata contradicts your expectation, the metadata is right. Never dismiss mismatches as "database errors."
+3. **When in doubt, go online.** Fetch the paper page, the publisher site, the DOI resolver. Use every tool available.
+4. **Never silently fix discrepancies.** Present what you found and let the user decide.
+
+**The user is always the final authority on citation accuracy.**

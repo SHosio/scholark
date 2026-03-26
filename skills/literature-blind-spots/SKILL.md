@@ -109,3 +109,14 @@ Tell the user:
 - **Prioritize quality over quantity.** 3 highly relevant papers per gap are better than 10 tangentially related ones.
 - **Note uncertainty.** If a search returned limited results for a gap, say so. The gap may still be real even if papers are hard to find.
 - **Include the source database** for each paper (Semantic Scholar, OpenAlex, Crossref, Europe PMC) — this is how scholark-1 works.
+
+## Citation Accuracy — CRITICAL
+
+**Never trust your own knowledge of authors, titles, or publication details.** Your training data contains associations (e.g., a well-known researcher in a subfield) that will cause you to "recognize" authors who are not on a paper. This is hallucination, and in academic work it corrupts citations.
+
+1. **DOI metadata over gut feeling.** If DOI metadata says the author is Ruth Schmidt and you "know" it should be Albrecht Schmidt — the metadata is right and you are wrong. Never dismiss a metadata mismatch as a "database error."
+2. **When in doubt, go online.** Fetch the actual paper page, the publisher landing page, the DOI resolver. Use every tool at your disposal to find the truth.
+3. **Never silently resolve discrepancies.** Present what you found, what the sources say, and let the user make the final call.
+4. **Never auto-correct author names, titles, or years.** Present both versions and ask.
+
+**The user is always the final authority on citation accuracy.**

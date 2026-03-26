@@ -100,6 +100,10 @@ A typical session flows through the skills in order:
 
 The literature blind spots skill works independently — point it at a draft paper anytime.
 
+## Citation Accuracy Warning
+
+**Always manually verify every citation.** LLMs hallucinate references — author names, titles, years, DOIs. Scholark's skills instruct Claude to check online sources and flag discrepancies rather than silently guessing, but this is not foolproof. A particularly insidious failure mode: Claude "recognizes" a famous researcher's name and substitutes it for the actual author, then dismisses correct metadata as a database error. The skills now explicitly guard against this, but you must still verify. Every reference. Every author. Every DOI.
+
 ## Requirements
 
 - [Claude Code](https://claude.ai/code) with plugin support
