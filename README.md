@@ -102,7 +102,9 @@ The literature blind spots skill works independently — point it at a draft pap
 
 ## Citation Accuracy Warning
 
-**Always manually verify every citation.** LLMs hallucinate references — author names, titles, years, DOIs. Scholark's skills instruct Claude to check online sources and flag discrepancies rather than silently guessing, but this is not foolproof. A particularly insidious failure mode: Claude "recognizes" a famous researcher's name and substitutes it for the actual author, then dismisses correct metadata as a database error. The skills now explicitly guard against this, but you must still verify. Every reference. Every author. Every DOI.
+The citation and literature tools are designed to remove the grunt work — cleaning up BibTeX files, finding DOIs, tracking down missing references. They are not designed to replace reading the papers you cite. If you are doing your job as a researcher and actually engaging with the work you reference, you will catch most errors naturally.
+
+That said: LLMs hallucinate references. A particularly insidious failure mode is Claude "recognizing" a famous researcher's name and substituting it for the actual author, then dismissing correct metadata as a database error. The skills now explicitly instruct Claude to verify online and flag discrepancies to you rather than silently guessing — but no safeguard is foolproof. Verify what you cite.
 
 ## Requirements
 
