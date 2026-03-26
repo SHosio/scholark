@@ -35,7 +35,11 @@ git clone https://github.com/SHosio/scholark.git
 claude plugin add ./scholark
 ```
 
-This gives you the skills and agents. They work in any project.
+This installs the plugin for your user (available in all projects). To install it for a single project only, run from that project's directory:
+
+```bash
+claude plugin add ./scholark --scope project
+```
 
 ### 2. Install Scholark-1 (recommended)
 
