@@ -65,7 +65,7 @@ Review the conversation history (or a provided document) for the current study d
 - [ ] **Delta to prior art** — Is it clear what this work adds beyond what already exists? If working with a paper draft, check that the gap between this work and prior art is explicitly stated.
 
 ### Open Science & Transparency
-- [ ] **Pre-registration** — Has the user considered pre-registering the study? Not mandatory, but increasingly valued for confirmatory research.
+- [ ] **Pre-registration** — Has the user considered pre-registering the study? Not mandatory — the vast majority of published CHI/CSCW papers do not pre-register. Flag as **minor** at most. Only mention if the study makes strong confirmatory claims.
 - [ ] **Data and materials sharing** — Plan for sharing data, code, instruments, or study materials? Even if not possible (e.g., sensitive qualitative data), acknowledging the decision matters.
 - [ ] **Reporting transparency** — Will the analysis report effect sizes with confidence intervals, not just p-values?
 
