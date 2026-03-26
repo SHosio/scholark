@@ -77,6 +77,16 @@ In your Scholark-1 `.env` file:
 - `OPENALEX_EMAIL` — Polite pool priority (just your email, no signup)
 - `UNPAYWALL_EMAIL` — Required only for open access PDF lookup (just your email)
 
+## Writing Style
+
+Scholark doesn't have a writing style skill — it doesn't need one. Claude absorbs tone from your project context automatically. To set the register, add a line to your project's `CLAUDE.md`:
+
+```
+Academic paper targeting CHI 2026. Formal but not stiff. Hedge claims appropriately.
+```
+
+If you have a draft (`.tex`, `.md`, etc.) in the project, Claude will also pattern-match to your existing voice — sentence rhythm, hedging style, claim framing. The more of your writing Claude can see, the better it calibrates.
+
 ## Workflow
 
 A typical session flows through the skills in order:
