@@ -79,13 +79,15 @@ In your Scholark-1 `.env` file:
 
 ## Writing Style
 
-Scholark doesn't have a writing style skill — it doesn't need one. Claude absorbs tone from your project context automatically. To set the register, add a line to your project's `CLAUDE.md`:
+Scholark doesn't have a writing style skill — it doesn't need one. To set the register, add a line to your project's `CLAUDE.md`:
 
 ```
 Academic paper targeting CHI 2026. Formal but not stiff. Hedge claims appropriately.
 ```
 
-If you have a draft (`.tex`, `.md`, etc.) in the project, Claude will also pattern-match to your existing voice — sentence rhythm, hedging style, claim framing. The more of your writing Claude can see, the better it calibrates.
+If you ask Claude to read your draft, it will naturally calibrate to your voice. The `CLAUDE.md` line ensures the right register even in sessions where your paper isn't loaded.
+
+Want more control? Edit `CLAUDE.md` with as much or as little style guidance as you like — or add a custom writing style skill to the plugin itself. That's the beauty of Claude Code: everything is a markdown file you own.
 
 ## Workflow
 
@@ -108,6 +110,22 @@ The literature blind spots skill works independently — point it at a draft pap
 The skills in this plugin are grounded in established HCI methodology — contribution type frameworks (Wobbrock & Kientz, 2016), current CHI reviewing standards, reflexive thematic analysis (Braun & Clarke), estimation-based statistical reporting, and open science practices. On top of that foundation, the current version reflects the personal opinions and reviewing experience of [Dr. Simo Hosio](https://github.com/SHosio). It is opinionated by design.
 
 **You should adapt it.** Fork the repo, use the skills on your own work, and when something doesn't fit your field or your perspective — tell Claude to change it. The skills are markdown files. Every disagreement is a chance to encode your own expertise. Over time, the plugin becomes a living reflection of your methodology standards.
+
+## A Note on Ethics and Integrity
+
+This tool can write. It can draft paragraphs, formulate arguments, and produce text that reads like a competent academic paper. That is precisely what makes it dangerous if used thoughtlessly.
+
+**The purpose of academic work is not to produce papers. It is to develop thinking.** The reasoning, the struggle with a messy literature, the slow refinement of an argument — that is the work. A paper is just the artifact that comes out the other end. If you outsource the thinking to an AI and rubber-stamp the output, you are not doing research. You are generating documents. The work will be hollow, and so will your development as a scholar.
+
+AI-assisted science is genuinely exciting. Using these tools to pressure-test your ideas, explore methodological alternatives, catch blind spots, or accelerate tedious structural work is legitimate and powerful. But there is a bright line between *augmenting your thinking* and *replacing it*. You must stay on the right side of that line, and you must be honest with yourself about which side you are on.
+
+**Before using Scholark's writing capabilities, know the rules:**
+
+- **Your venue's policy.** ACM, IEEE, and other publishers have explicit and evolving policies on AI-generated content in submissions. Read them. They differ, and they change.
+- **Your institution's policy.** Universities and research groups increasingly have their own guidelines on AI use in academic work. Follow them.
+- **Your own ethical standards.** No policy can substitute for your own judgment. If you cannot defend how you used the tool to a colleague, to a reviewer, or to yourself — you should not have used it that way.
+
+The future of AI in research is still being written. Be part of shaping it responsibly, not part of the cautionary tales.
 
 ## Workshops
 
