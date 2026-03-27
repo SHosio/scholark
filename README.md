@@ -133,9 +133,11 @@ AI-assisted science is genuinely exciting. Using these tools to pressure-test yo
 
 The future of AI in research is still being written. Be part of shaping it responsibly, not part of the cautionary tales.
 
+The author assumes no responsibility for how these tools are used. You are solely accountable for the integrity and ethics of your own research.
+
 ## Workshops
 
-Dr. Simo Hosio is available for hire to give workshops on Claude Code for academic work — from installing and using these tools to forking and customizing them for your own field. [Get in touch.](https://github.com/SHosio)
+Dr. Simo Hosio is available for hire to give workshops on Claude Code for academic work — from installing and using these tools to forking and customizing them for your own field. [Get in touch.](https://simohosio.com)
 
 ## License
 
