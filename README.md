@@ -97,6 +97,7 @@ A typical session flows through the skills in order:
 2. **Design** — Formalize the chosen option into a complete study design
 3. **Analysis** — Pre-specify the analysis plan for each dependent variable
 4. **Validate** — Run a completeness check before piloting
+5. **You** — Read the output. Apply judgment. Decide what stays, what goes, and what needs rethinking. AI can generate options at scale — but taste, conviction, and knowing when something *feels wrong* are yours alone. That's not a limitation of the tool. That's the point.
 
 The literature blind spots skill works independently — point it at a draft paper anytime.
 
