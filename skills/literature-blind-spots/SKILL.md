@@ -5,7 +5,7 @@ description: Analyze a draft paper for literature gaps and find real papers to f
 
 # Literature Blind Spots
 
-> **Requires [Scholark-1](https://github.com/SHosio/scholark-1) MCP.** Before proceeding, check if scholark-1 tools are available in this session. If not, tell the user: "This skill requires the Scholark-1 MCP server for academic literature search. Install it in your project from https://github.com/SHosio/scholark-1 and add it to your project's `.mcp.json`." Then stop.
+> **Works best with [Scholark-1](https://github.com/SHosio/scholark-1) MCP.** Before proceeding, check if scholark-1 tools are available in this session. If not, tell the user: "This skill works best with the Scholark-1 MCP server for academic literature search. Without it, I'll use web search to find papers via Google Scholar, ACM DL, and publisher sites — results may be less comprehensive. For full coverage, install Scholark-1 from https://github.com/SHosio/scholark-1." Then continue using WebSearch and WebFetch as the primary search method.
 
 Analyze a draft paper to identify gaps in its literature coverage, then use the scholark-1 MCP tools to find real papers that could fill those gaps. Output an HTML file the user can read and act on.
 
@@ -43,6 +43,15 @@ Search strategically:
 - Try both broad and narrow searches
 - Look for review/survey papers in the area
 - Check citation counts to prioritize influential work
+
+### Handling Thin or Failed Results
+
+Semantic Scholar is frequently rate-limited. If scholark-1 searches return fewer results than expected, empty results, or errors:
+
+1. **Try reformulating queries** with different keywords, broader/narrower scope, or different scholark-1 tools.
+2. **Fall back to web search.** Use WebSearch to search Google Scholar (`site:scholar.google.com`), ACM Digital Library (`site:dl.acm.org`), IEEE Xplore, or other academic sources. Use WebFetch to pull paper details from publisher landing pages or DOI resolvers.
+3. **Note the source.** Papers found via web search fallback may have less structured metadata. Mark them clearly and advise the user to verify details.
+4. **Don't give up on a blind spot** just because the API is throttled. A gap in the literature is still a gap even if the search tool is struggling.
 
 ## Step 4: Generate HTML Output
 
