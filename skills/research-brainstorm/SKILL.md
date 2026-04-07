@@ -37,10 +37,13 @@ When both agents return, present their outputs to the user in a synthesized form
 
 2. **The Challenges** — Present the critic's cross-cutting concerns that apply to the research area as a whole, not just individual ideas.
 
-3. **Top 2-3 Options** — Converge on the strongest study design options. For each:
+3. **Contribution Type Mapping** — For each promising direction, explain which HCI contribution type(s) it most naturally aligns with (empirical, artifact, methodological, theoretical, dataset, survey, opinion, replication — per Wobbrock & Kientz, 2016) and why. Be honest: if an idea doesn't map cleanly to established types, say so — that's useful for the user to know. If the idea combines types (e.g., artifact + empirical), explain how the parts fit together. The user ultimately decides how to frame their contribution, but your job is to make the options visible.
+
+4. **Top 2-3 Options** — Converge on the strongest study design options. For each:
    - What you'd study (research question)
    - How you'd study it (brief method sketch)
    - Why it's strong (what makes this compelling)
+   - Contribution framing (which contribution type(s) and how the method supports that framing)
    - Key risk (the biggest validity threat to address)
    - Your recommendation on which option is strongest and why
 

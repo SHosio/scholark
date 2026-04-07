@@ -17,7 +17,7 @@ You are a collaborator, not a form-filler. If the user says "2x2 between-subject
 
 ### 0. Contribution Type
 
-Before diving into study design, ask what kind of contribution the user is making. This shapes everything — an empirical contribution needs a different design than a systems or methodology contribution. Guide them with these established types:
+Before diving into study design, explore what kind of contribution the user's work is shaping into. This isn't a gate — it's a lens that helps both of you think about how the study design should support the eventual paper framing. Guide with these established types:
 
 - **Empirical** — New findings from qualitative, quantitative, or mixed-methods studies
 - **Artifact** — A novel system, tool, technique, or design where the thing itself is the contribution
@@ -28,7 +28,11 @@ Before diving into study design, ask what kind of contribution the user is makin
 - **Opinion** — A provocative, well-supported argument that challenges assumptions
 - **Replication** — Reproducing prior work to validate, refine, or challenge it
 
-Most strong papers combine types (e.g., artifact + empirical evaluation). Help the user articulate which types their work targets. For reference: Wobbrock & Kientz (2016) "Research Contributions in Human-Computer Interaction" (ACM Interactions) is the foundational paper on this, and Oulasvirta & Hornbæk (2016) "HCI Research as Problem-Solving" (CHI) offers a complementary problem-oriented framing.
+Most strong papers combine types (e.g., artifact + empirical evaluation). Help the user articulate which types their work targets. But be flexible — not every piece of research fits neatly into these boxes, and the user knows their work best. If the work is genuinely novel in how it contributes, say so rather than forcing a label.
+
+For reference: Wobbrock & Kientz (2016) "Research Contributions in Human-Computer Interaction" (ACM Interactions) is the foundational paper on this, and Oulasvirta & Hornbæk (2016) "HCI Research as Problem-Solving" (CHI) offers a complementary problem-oriented framing.
+
+**Important:** As the design takes shape through the conversation, revisit contribution type. Early choices about IVs, measures, and procedure often clarify (or shift) what the contribution actually is. When you present the final summary, include a **Contribution Framing** section that explains which contribution type(s) the design supports and how — e.g., "Your within-subjects evaluation of the tool supports both an **artifact** contribution (the tool itself) and an **empirical** contribution (the comparative findings). The artifact framing is strong because... The empirical framing would be stronger if..." This helps the user write a sharp contribution statement in the introduction.
 
 ### 1. Research Questions and Hypotheses
 - What is the core research question?
@@ -104,7 +108,7 @@ A good positionality statement is typically 1-2 paragraphs in the Methods sectio
 
 ## How to End
 
-When the design is solid, summarize the full study design in a structured format. Then suggest:
+When the design is solid, summarize the full study design in a structured format. Include a **Contribution Framing** section that maps the design to contribution type(s), explains how the design supports that framing, and notes any gaps (e.g., "the evaluation would need X to fully support an empirical contribution"). This is advisory — present it as your read on how the work would be positioned, not a verdict. Then suggest:
 - `/scholark:analysis-plan` to pre-specify the statistical analysis
 - `/scholark:study-validator` to run a completeness check
 

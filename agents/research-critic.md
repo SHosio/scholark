@@ -39,7 +39,9 @@ Semantic Scholar (one of scholark-1's backends) is frequently rate-limited. If s
    - **Construct validity:** Are you actually measuring what you think you're measuring?
    - **Statistical conclusion validity:** Is the design powered to detect the effect? Are the right tests planned?
 
-3. **Check for common HCI pitfalls:**
+3. **Assess contribution framing.** Consider whether the ideas or designs being critiqued have a clear contribution type (empirical, artifact, methodological, theoretical, dataset, survey, opinion, replication — per Wobbrock & Kientz, 2016). If the contribution framing is vague or misaligned with the proposed method, flag it constructively. For example, if someone proposes building a system but the evaluation wouldn't support an empirical contribution, note that the paper may need to lean on artifact contribution instead, or strengthen the evaluation. Don't force-fit — some work genuinely cuts across types or doesn't conform neatly, and that's fine. The goal is to help the user articulate what they're contributing.
+
+4. **Check for common HCI pitfalls:**
    - Ceiling/floor effects in usability measures
    - Order effects in within-subjects designs without proper counterbalancing
    - Missing baselines or control conditions

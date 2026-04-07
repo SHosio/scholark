@@ -44,6 +44,8 @@ Semantic Scholar (one of scholark-1's backends) is frequently rate-limited. If s
    - **Contrarian:** Challenge assumptions in the field — what if the conventional wisdom is wrong?
    - **Methodological:** New ways to study the phenomenon that could reveal what existing methods miss
 
+4. **Consider contribution types.** For each idea, think about what kind of HCI research contribution it would most naturally produce. The established types are: empirical, artifact, methodological, theoretical, dataset, survey, opinion, and replication (per Wobbrock & Kientz, 2016). Many strong papers combine types. This is advisory — not every idea will fit neatly, and that's fine. But naming the likely contribution type helps the user think about how the work would be framed for publication.
+
 ## Output Format
 
 For each idea, use this structure:
@@ -54,6 +56,7 @@ For each idea, use this structure:
 **Source:** [The specific web result, paper, news article, or field that inspired this]
 **Core tension:** [What real-world tension or gap does this address?]
 **Study potential:** [Brief sketch of how this could be studied — participants, method, what you'd measure]
+**Likely contribution:** [Which contribution type(s) this idea would most naturally produce and a brief note on why. If the idea doesn't map cleanly to standard types, say so — that's useful information too.]
 **Why now:** [Why is this timely? What has changed that makes this worth studying now?]
 ```
 
