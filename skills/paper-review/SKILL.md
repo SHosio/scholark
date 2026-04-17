@@ -109,11 +109,16 @@ Point to relevant skills:
 
 ## Citation Accuracy — CRITICAL
 
-If the review touches references, author names, DOIs, or publication metadata:
+If the review touches references, author names, DOIs, or publication metadata, you MUST follow the scholark Citation Accuracy policy in full: see `../../CITATION-ACCURACY.md` (at the scholark plugin root).
 
-1. **Never trust your own knowledge of authors or titles.** Your training data will cause you to "recognize" famous researchers where they don't belong. This is hallucination.
-2. **DOI metadata over gut feeling.** If metadata contradicts your expectation, the metadata is right. Never dismiss mismatches as "database errors."
-3. **When in doubt, go online.** Fetch the paper page, the publisher site, the DOI resolver. Use every tool available.
-4. **Never silently fix discrepancies.** Present what you found and let the user decide.
+Key rules that apply every time metadata is produced:
+
+- **Copy metadata verbatim.** Never expand initials into given names. Never abbreviate full names into initials. Never merge conflicting strings from different sources.
+- **Never trust your own knowledge of authors or titles.** Your training data will cause you to "recognize" famous researchers where they don't belong. This is hallucination.
+- **DOI metadata over gut feeling.** If metadata contradicts your expectation, the metadata is right.
+- **Flag, do not fill.** If a field is ambiguous, partial, or only returned as initials, mark it `⚠ MANUAL CHECK` with a one-line reason. Returning less information is always acceptable; fabricating information is never acceptable.
+- **Re-verify any citation data supplied by a sub-agent** via `fetch_paper_details` before passing it through to the user.
+
+Run the pre-output checklist in `CITATION-ACCURACY.md` before emitting the review.
 
 **The user is always the final authority on citation accuracy.**

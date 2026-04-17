@@ -121,11 +121,49 @@ Tell the user:
 
 ## Citation Accuracy — CRITICAL
 
+The full authoritative policy lives in `../../CITATION-ACCURACY.md` at the scholark plugin root. That document is the source of truth; the summary below restates it for discoverability, but if the two ever disagree, follow `CITATION-ACCURACY.md`.
+
 **Never trust your own knowledge of authors, titles, or publication details.** Your training data contains associations (e.g., a well-known researcher in a subfield) that will cause you to "recognize" authors who are not on a paper. This is hallucination, and in academic work it corrupts citations.
 
-1. **DOI metadata over gut feeling.** If DOI metadata says the author is Ruth Schmidt and you "know" it should be Albrecht Schmidt — the metadata is right and you are wrong. Never dismiss a metadata mismatch as a "database error."
-2. **When in doubt, go online.** Fetch the actual paper page, the publisher landing page, the DOI resolver. Use every tool at your disposal to find the truth.
-3. **Never silently resolve discrepancies.** Present what you found, what the sources say, and let the user make the final call.
-4. **Never auto-correct author names, titles, or years.** Present both versions and ask.
+### The Absolute Rules
 
-**The user is always the final authority on citation accuracy.**
+1. **Copy metadata verbatim from the database response.** Author names, titles, years, venues — paste exactly what the tool returned. Do not reformat, do not "clean up," do not translate.
+2. **NEVER expand initials into given names.** If the database returns `A. Bach`, write `A. Bach` — not `Aaron Bach`, not `Andreas Bach`, not `A. K. P. Bach`. Expanding `A.` into a full first name is fabrication, even if you're "pretty sure" who the author is. The `A.` is the authoritative output. Leave it alone.
+3. **NEVER add middle initials, middle names, or honorifics** that the database did not return. Two initials is not three initials.
+4. **NEVER reconcile conflicting name strings from different sources.** If Semantic Scholar says `A. Bach` and OpenAlex says `Aaron Kim Peter Bach`, do not merge, average, or pick — present BOTH strings with their sources, and flag for manual inspection.
+5. **NEVER trust a subagent's author strings without verifying via `fetch_paper_details`.** Subagents can hallucinate too. If a subagent returns author names, re-fetch the paper details directly before putting those names in the output.
+6. **DOI metadata over gut feeling.** If DOI metadata says the author is Ruth Schmidt and you "know" it should be Albrecht Schmidt — the metadata is right and you are wrong. Never dismiss a metadata mismatch as a "database error."
+7. **When in doubt, go online.** Fetch the actual paper page, the publisher landing page, the DOI resolver. Use every tool at your disposal to find the truth.
+8. **Never silently resolve discrepancies.** Present what you found, what the sources say, and let the user make the final call.
+9. **Never auto-correct author names, titles, or years.** Present both versions and ask.
+
+### When the Metadata is Partial or Ambiguous — FLAG, DO NOT FILL
+
+Any of these conditions require flagging for manual inspection rather than guessing:
+
+- The database returned only initials (e.g., `A. Bach`, `N. van Berkel`) and you want to know a full name
+- Two sources disagree on an author's name spelling or form
+- The venue field is `"Not available"` or missing
+- The year is missing or reported inconsistently across sources
+- A subagent returned names that differ from what `fetch_paper_details` returns
+
+**How to flag in the HTML output:** use a visible marker like `⚠ MANUAL CHECK` next to the affected field, with a one-line note explaining what the disagreement is. Example:
+
+```
+Authors: A. Bach, T. M. Nørgaard, J. Brok, N. van Berkel ⚠ MANUAL CHECK — initials only; verify full names against the publisher page before citing.
+```
+
+It is always acceptable to return LESS information (initials, partial author list, "year unknown") than the user wants. It is NEVER acceptable to return FABRICATED information.
+
+### Pre-Output Checklist
+
+Before writing the HTML file, for every paper entry, verify:
+
+- [ ] Every author name appears exactly as in a `fetch_paper_details` response (or exactly as in the original `search_papers` response if no fetch was done).
+- [ ] No given name has been expanded from an initial.
+- [ ] No author has been added, removed, or reordered.
+- [ ] The title is a verbatim copy-paste (no corrections of capitalization, punctuation, or typos).
+- [ ] The year, venue, and DOI match the database response.
+- [ ] Any ambiguity is marked `⚠ MANUAL CHECK` rather than silently resolved.
+
+**The user is always the final authority on citation accuracy. Your job is to surface what the databases actually said, not to produce a polished final citation.**
