@@ -17,6 +17,7 @@ For full-powered academic literature search, pair with [Scholark-1](https://gith
 - `/scholark:study-validator` — Completeness checklist that flags missing elements reviewers would catch
 - `/scholark:paper-review` — Pre-submission review against common rejection patterns at top HCI venues
 - `/scholark:literature-blind-spots` — Analyze a draft paper for citation gaps and find real papers to fill them
+- `/scholark:prose-tighten` — Tighten `.tex` prose without losing field-specific terminology. Splits long sentences, cuts fluff, fixes nominalizations. Asks before touching technical terms
 
 ### What works without Scholark-1
 
@@ -79,7 +80,7 @@ In your Scholark-1 `.env` file:
 
 ## Writing Style
 
-Scholark doesn't have a writing style skill — it doesn't need one. To set the register, add a line to your project's `CLAUDE.md`:
+To set the register (formal vs. conversational, hedge level, audience), add a line to your project's `CLAUDE.md`:
 
 ```
 Academic paper targeting CHI 2026. Formal but not stiff. Hedge claims appropriately.
@@ -87,7 +88,9 @@ Academic paper targeting CHI 2026. Formal but not stiff. Hedge claims appropriat
 
 If you ask Claude to read your draft, it will naturally calibrate to your voice. The `CLAUDE.md` line ensures the right register even in sessions where your paper isn't loaded.
 
-Want more control? Edit `CLAUDE.md` with as much or as little style guidance as you like — or add a custom writing style skill to the plugin itself. That's the beauty of Claude Code: everything is a markdown file you own.
+For mechanical prose tightening — splitting long sentences, cutting fluff, fixing nominalizations — use the `prose-tighten` skill. It is `.tex` only and leaves field-specific terminology alone (asks you when uncertain).
+
+Want more control? Edit `CLAUDE.md` with as much or as little style guidance as you like — or add another writing skill to the plugin yourself. That's the beauty of Claude Code: everything is a markdown file you own.
 
 ## Workflow
 
@@ -97,7 +100,9 @@ A typical session flows through the skills in order:
 2. **Design** — Formalize the chosen option into a complete study design
 3. **Analysis** — Pre-specify the analysis plan for each dependent variable
 4. **Validate** — Run a completeness check before piloting
-5. **You** — Read the output. Apply judgment. Decide what stays, what goes, and what needs rethinking. AI can generate options at scale — but taste, conviction, and knowing when something *feels wrong* are yours alone. That's not a limitation of the tool. That's the point.
+5. **Tighten** — When you have a draft, run `prose-tighten` on the `.tex` to clean up sentence-level prose without touching your terminology
+6. **Review** — Run `paper-review` on the tightened draft to catch structural issues reviewers will flag
+7. **You** — Read the output. Apply judgment. Decide what stays, what goes, and what needs rethinking. AI can generate options at scale — but taste, conviction, and knowing when something *feels wrong* are yours alone. That's not a limitation of the tool. That's the point.
 
 The literature blind spots skill works independently — point it at a draft paper anytime.
 
