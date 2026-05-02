@@ -191,3 +191,45 @@ def test_compute_only_latex_no_prose():
         assert 'error' in result
     finally:
         os.unlink(path)
+
+
+# --- CLI ---
+
+def test_cli_no_args():
+    proc = subprocess.run(
+        [sys.executable, SCRIPT],
+        capture_output=True, text=True
+    )
+    assert proc.returncode == 1
+    out = json.loads(proc.stdout)
+    assert 'error' in out
+    assert 'usage' in out['error'].lower()
+
+
+def test_cli_missing_file():
+    proc = subprocess.run(
+        [sys.executable, SCRIPT, '/nonexistent/path-that-does-not-exist.tex'],
+        capture_output=True, text=True
+    )
+    assert proc.returncode == 1
+    out = json.loads(proc.stdout)
+    assert 'error' in out
+    assert 'not found' in out['error'].lower()
+
+
+def test_cli_valid_file_returns_json():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tex', delete=False) as f:
+        f.write("Quick brown fox jumps. Lazy dog runs fast.")
+        path = f.name
+    try:
+        proc = subprocess.run(
+            [sys.executable, SCRIPT, path],
+            capture_output=True, text=True
+        )
+        assert proc.returncode == 0, f"stderr: {proc.stderr}, stdout: {proc.stdout}"
+        out = json.loads(proc.stdout)
+        assert 'fre' in out
+        assert isinstance(out['fre'], (int, float))
+        assert out['words'] > 0
+    finally:
+        os.unlink(path)

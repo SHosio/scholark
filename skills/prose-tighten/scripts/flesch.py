@@ -85,7 +85,19 @@ def compute(latex_path):
 
 
 def main(argv):
-    pass
+    if len(argv) != 2:
+        print(json.dumps({'error': 'usage: flesch.py <path-to-tex>'}))
+        return 1
+    try:
+        result = compute(argv[1])
+    except FileNotFoundError:
+        print(json.dumps({'error': f'file not found: {argv[1]}'}))
+        return 1
+    except ImportError:
+        print(json.dumps({'error': 'textstat not installed'}))
+        return 2
+    print(json.dumps(result))
+    return 0
 
 
 if __name__ == '__main__':
