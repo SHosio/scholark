@@ -231,3 +231,20 @@ Recommended pairing:
 1. Run `prose-tighten` → tighter prose, terminology preserved.
 2. Review the diff, accept or revert.
 3. Run `paper-review` on the tightened draft → structural review on cleaner prose.
+
+## Session log (reproducibility artefact)
+
+After completing a run, append one line to `.scholark/session-log.md` at the project root.
+
+**Format** (one line per invocation):
+```
+YYYY-MM-DD HH:MM:SS | prose-tighten | one-sentence summary of what ran and what came out
+```
+
+Use ISO-style local date and time with seconds (e.g. `2026-05-02 14:31:07`). Always include the date — log lines from previous sessions must remain readable later.
+
+**On first write to `.scholark/`:** create the folder and append `.scholark/` to the project's `.gitignore` with a short comment noting it was added by Scholark (only if `.gitignore` exists and the entry is not already there).
+
+**Skip logging** if there is no clear project root (e.g., the user is at `$HOME`), no obvious work artefact (paper, study materials, draft) in the directory, or if the user has explicitly said they don't want session tracking.
+
+The log is for the user's own reproducibility and reflection: what was run, on what, what came out.

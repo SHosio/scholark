@@ -105,3 +105,20 @@ Summarize the complete analysis plan in a structured format suitable for a pre-r
 - **Always specify what to do when assumptions are violated.** This is where most analysis plans fail.
 - **Match the test to the data, not the convention.** If Likert data is better analyzed with ordinal regression than ANOVA, say so.
 - **Don't over-specify.** Cover the planned analyses thoroughly, but don't enumerate every possible exploratory analysis.
+
+## Session log (reproducibility artefact)
+
+After completing a run, append one line to `.scholark/session-log.md` at the project root.
+
+**Format** (one line per invocation):
+```
+YYYY-MM-DD HH:MM:SS | analysis-plan | one-sentence summary of what ran and what came out
+```
+
+Use ISO-style local date and time with seconds (e.g. `2026-05-02 14:31:07`). Always include the date — log lines from previous sessions must remain readable later.
+
+**On first write to `.scholark/`:** create the folder and append `.scholark/` to the project's `.gitignore` with a short comment noting it was added by Scholark (only if `.gitignore` exists and the entry is not already there).
+
+**Skip logging** if there is no clear project root (e.g., the user is at `$HOME`), no obvious work artefact (paper, study materials, draft) in the directory, or if the user has explicitly said they don't want session tracking.
+
+The log is for the user's own reproducibility and reflection: what was run, on what, what came out.

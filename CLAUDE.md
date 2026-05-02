@@ -27,3 +27,19 @@ The `research-brainstorm` skill dispatches both agents in parallel and synthesiz
 
 ### Scholark-1 Dependency
 Scholark-1 MCP is a separate install configured per-project. Skills that need it (literature-blind-spots, research-brainstorm) check for its availability and guide the user to install it if missing. Skills that don't need it (study-design, analysis-plan, study-validator) work fully standalone.
+
+### Sister project: Scholark-1
+
+[Scholark-1](https://github.com/SHosio/scholark-1) lives at `/Users/simohosio/Code/personal/scholark-1` on this machine. It is an MCP server (Python, FastMCP) that searches Semantic Scholar, OpenAlex, Crossref, Europe PMC, and PubMed in parallel and returns deduplicated paper metadata. Scholark (this plugin) and Scholark-1 are designed to work together but install separately. Important file to know: `scholark-1/server.py` defines the MCP tools and their `instructions` block — it is the canonical place where Scholark-1's behavioural rules live (citation integrity, session logging, etc.).
+
+### Session log convention (reproducibility)
+
+Both Scholark-1 and this plugin maintain a per-project session log. Scholark-1 writes to `.scholark-1/session-log.md`; this plugin writes to `.scholark/session-log.md`. The two folders are separate by design — each tool owns its own folder.
+
+For this plugin, every skill appends one line per invocation to `.scholark/session-log.md` in the project root, format:
+```
+YYYY-MM-DD HH:MM:SS | <skill-name> | one-sentence summary
+```
+The convention is encoded in each `SKILL.md` so end-user installations of the plugin honour it without depending on a CLAUDE.md file in the user's project. On first write, the skill creates `.scholark/` and adds it to the project's `.gitignore` (if one exists). Skips logging if there is no clear project root or the user has opted out.
+
+`.scholark/` also holds skill-specific reports (e.g., `prose-tighten` writes `.scholark/reports/prose-tighten/<paper-stem>-<timestamp>.md`). Reports are detailed; the session log is a one-line timeline across all skill calls.
