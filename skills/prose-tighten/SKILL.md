@@ -114,6 +114,8 @@ For each word the model considers replacing, classify uncertainty:
 
 If the user answers "no, load-bearing" to every term, proceed with non-terminology edits only and note in the summary: "All terminology preserved per your input."
 
+**Whole-paper mode:** collect terminology candidates across *all* sections first, deduplicate so each term appears once, and ask the single batch question before any section is edited. One decision per term covers every occurrence.
+
 ## Step 8: Apply edits in place
 
 Edit the `.tex` file(s) directly. Edits respect never-touch zones — sentences containing citations or math have prose tightened around them while the protected tokens pass through unchanged.
@@ -128,11 +130,6 @@ Compute Flesch Reading Ease and Flesch-Kincaid Grade Level **before and after** 
 
 ```bash
 python3 <SKILL_BASE_DIR>/scripts/flesch.py <path-to-tex>
-```
-
-For example, if the skill loaded from `/Users/jane/.claude/plugins/scholark/skills/prose-tighten/`, run:
-```bash
-python3 /Users/jane/.claude/plugins/scholark/skills/prose-tighten/scripts/flesch.py /Users/jane/papers/draft/main.tex
 ```
 
 The script returns JSON: `{"fre": <float>, "fkgl": <float>, "words": <int>, "sentences": <int>}`.
@@ -196,8 +193,7 @@ The timestamp in the filename means multiple passes accumulate (audit trail) rat
 **`.scholark/` setup.** On first write to `.scholark/`, check if `.scholark/` is in the project's `.gitignore`. If not (and a `.gitignore` exists), append it and tell the user. If no `.gitignore` exists, just create the directory — do not generate a `.gitignore`.
 
 ### D. Verify-nothing-lost prompt
-Always the last line of the in-chat summary, no exceptions:
-> "Please review the diff and confirm no critical terminology or meaning was lost. If anything is wrong: `git checkout -- <file>` to revert all, or revert specific hunks in your editor."
+The closing line of the in-chat summary (shown above in section B) is mandatory, every run, no exceptions.
 
 ### E. Git status reminder
 If the `.tex` file was tracked but uncommitted before the run, note it in the summary and suggest staging the prior state first (clean revert point). If already clean, no reminder.

@@ -39,7 +39,9 @@ def strip_latex(text):
         r'\\(cite|citep|citet|autocite|textcite|parencite|ref|autoref|label|cref|Cref)\*?\{[^}]*\}',
         '', text
     )
-    # Keep content of formatting wrappers
+    # Keep content of formatting wrappers. [^}] does not match nested braces,
+    # so e.g. \textbf{outer \emph{inner}} drops the inner content. Acceptable
+    # for the diagnostic since Flesch is reported as directional, not authoritative.
     text = re.sub(
         r'\\(emph|textbf|textit|underline|textsc|textsf|texttt)\{([^}]*)\}',
         r'\2', text

@@ -16,13 +16,14 @@ Scholark is a Claude Code plugin for HCI researchers. It provides research desig
 
 The `research-brainstorm` skill dispatches both agents in parallel and synthesizes their outputs.
 
-### Six Skills
+### Seven Skills
 1. **research-brainstorm** — Coordinates both agents, produces ranked ideas with risk assessment
 2. **study-design** — Conversational study design formalization (IVs, DVs, design type, sampling, procedure)
 3. **analysis-plan** — Pre-registration-ready statistical analysis specification
 4. **study-validator** — Completeness checklist with severity-rated gaps
 5. **literature-blind-spots** — Accepts .tex/.md/.pdf drafts, searches for citation gaps, outputs HTML report
-6. **prose-tighten** — Tightens academic prose in `.tex` (split long sentences, cut fluff, fix nominalizations) without losing field-specific terminology. Reports a real Flesch diagnostic via `textstat`; never hallucinates scores.
+6. **paper-review** — Pre-submission review against common rejection patterns at top HCI venues (CHI, CSCW, UIST, DIS, TOCHI, IJHCS)
+7. **prose-tighten** — Tightens academic prose in `.tex` (split long sentences, cut fluff, fix nominalizations) without losing field-specific terminology. Reports a real Flesch diagnostic via `textstat`; never hallucinates scores.
 
 ### Scholark-1 Dependency
 Scholark-1 MCP is a separate install configured per-project. Skills that need it (literature-blind-spots, research-brainstorm) check for its availability and guide the user to install it if missing. Skills that don't need it (study-design, analysis-plan, study-validator) work fully standalone.
