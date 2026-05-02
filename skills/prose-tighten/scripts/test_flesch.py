@@ -131,3 +131,63 @@ def test_preserve_escaped_percent():
 def test_strip_caption():
     text = "See figure. \\caption{A nice plot of results.} The plot shows facts."
     assert flesch.strip_latex(text) == "See figure. The plot shows facts."
+
+
+# --- compute() ---
+
+def test_compute_basic_prose():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tex', delete=False) as f:
+        f.write("This is a simple sentence. It has two parts. Three sentences total.")
+        path = f.name
+    try:
+        result = flesch.compute(path)
+        assert 'fre' in result
+        assert 'fkgl' in result
+        assert 'words' in result
+        assert 'sentences' in result
+        assert isinstance(result['fre'], (int, float))
+        assert isinstance(result['fkgl'], (int, float))
+        assert result['words'] > 0
+        assert result['sentences'] >= 1
+    finally:
+        os.unlink(path)
+
+
+def test_compute_strips_latex_before_scoring():
+    """Flesch numbers should reflect prose only, not LaTeX commands."""
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tex', delete=False) as f:
+        f.write("\\section{Intro} The cat sat on the mat. It was a fine cat.")
+        path = f.name
+    try:
+        result = flesch.compute(path)
+        # 'Intro' and 'section' should not be counted as words
+        # 11 prose words: The cat sat on the mat It was a fine cat
+        assert result['words'] == 11
+        assert result['sentences'] == 2
+    finally:
+        os.unlink(path)
+
+
+def test_compute_empty_file():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tex', delete=False) as f:
+        f.write("")
+        path = f.name
+    try:
+        result = flesch.compute(path)
+        assert result['words'] == 0
+        assert result.get('fre') is None
+        assert 'error' in result
+    finally:
+        os.unlink(path)
+
+
+def test_compute_only_latex_no_prose():
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.tex', delete=False) as f:
+        f.write("\\documentclass{article}\n\\begin{document}\n\\end{document}")
+        path = f.name
+    try:
+        result = flesch.compute(path)
+        assert result['words'] == 0
+        assert 'error' in result
+    finally:
+        os.unlink(path)

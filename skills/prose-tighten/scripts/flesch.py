@@ -64,7 +64,24 @@ def strip_latex(text):
 
 def compute(latex_path):
     """Read a .tex file, strip it, compute Flesch metrics."""
-    pass
+    with open(latex_path, 'r', encoding='utf-8') as f:
+        latex = f.read()
+    plain = strip_latex(latex)
+    if not plain:
+        return {
+            'fre': None,
+            'fkgl': None,
+            'words': 0,
+            'sentences': 0,
+            'error': 'No prose found after LaTeX stripping',
+        }
+    import textstat
+    return {
+        'fre': round(textstat.flesch_reading_ease(plain), 2),
+        'fkgl': round(textstat.flesch_kincaid_grade(plain), 2),
+        'words': textstat.lexicon_count(plain),
+        'sentences': textstat.sentence_count(plain),
+    }
 
 
 def main(argv):
