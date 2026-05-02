@@ -93,7 +93,38 @@ The skill executes these steps in order:
    > *"This pass will edit: rw.tex (included from main.tex). Proceed? [y/n]"*
    This applies to every mode — section-targeted or whole-paper. If only the entry-point file is touched, no question is asked.
 6. **Apply edits in place.** Edit the `.tex` file(s) directly. Edits respect never-touch zones — sentences containing citations or math have prose tightened around them while the protected tokens pass through unchanged.
-7. **Compute Flesch (diagnostic only).** Strip LaTeX commands, run Flesch Reading Ease + Flesch-Kincaid Grade Level on the resulting plain text, record before/after numbers. Output explicitly states these are diagnostics, not targets.
+7. **Compute Flesch (diagnostic only).** Flesch numbers are computed by a **shipped helper script** that delegates the actual scoring to the [`textstat`](https://pypi.org/project/textstat/) Python package — never by the LLM in-head, since LLMs hallucinate numerical computations like syllable and sentence counts. The script (`skills/prose-tighten/scripts/flesch.py`) accepts a `.tex` file path on argv, performs LaTeX-aware stripping (removes the never-touch zones — citations, math environments, code/verbatim, comments, captions — using regex), then passes the clean prose to `textstat.flesch_reading_ease()` and `textstat.flesch_kincaid_grade()`.
+
+   **Output format:** the script emits JSON to stdout: `{"fre": <float>, "fkgl": <float>, "words": <int>, "sentences": <int>}`. The skill invokes it via Bash and parses the JSON. Skill computes once before edits and once after, reports both pairs in the in-chat summary with the explicit "diagnostic only, not a target" disclaimer.
+
+   **Dependency: `textstat`.** `textstat` is a small, well-maintained Python package (used in linguistics and pedagogy research) with proper syllable counting, sentence segmentation, and the canonical readability formulas. We do not reimplement these — half-baked syllable heuristics would produce a misleading diagnostic.
+
+   **First-run dependency check.** On first invocation, the skill verifies `textstat` is importable: `python3 -c "import textstat"`. If the import fails, the skill asks the user for permission to install it:
+   > *"prose-tighten uses the `textstat` Python package for the Flesch diagnostic. It's not installed. Install it now via `python3 -m pip install textstat`? [y / skip]"*
+   - **`y`:** skill runs `python3 -m pip install textstat` directly. On success, continues with the diagnostic. On failure (e.g., PEP 668 externally-managed environment, or no network), surfaces the error message and suggests alternatives the user might know better than the skill (`pipx`, `uv pip install`, virtualenv) — then asks again whether to skip the diagnostic for this run.
+   - **`skip`:** skill proceeds without the diagnostic for this pass, noting it in the summary. The check repeats on the next run.
+
+   The diagnostic is **optional** — the skill's core value (sentence splitting, fluff removal, terminology protection) does not depend on it. Users who never want the diagnostic can keep saying skip, and the skill works fine.
+
+   ### HARD RULE: never hallucinate scores
+
+   The skill is **strictly forbidden** from producing Flesch numbers (or any numerical metric) by LLM in-head reasoning. Numbers must come from `textstat` via the helper script, or they must be omitted. There is no middle ground:
+   - If `textstat` is installed → report the real numbers.
+   - If `textstat` is not installed and the user declines to install → **omit the diagnostic entirely** and write *"Flesch diagnostic skipped — `textstat` not available"* in the in-chat summary and the sidecar report.
+   - If `python3` is missing → omit the diagnostic and note it.
+   - If the helper script errors → omit the diagnostic and surface the error.
+
+   The skill MUST NOT, under any circumstances:
+   - Approximate a Flesch score from in-head syllable or sentence counting
+   - Produce a "ballpark" or "estimated" number when the tool is unavailable
+   - Carry over a Flesch number from a previous run
+   - Infer Flesch numbers from prose characteristics
+
+   A hallucinated number that looks authoritative is **worse than no number** — it is fabricated data. This rule applies to Flesch and to any other numerical metric the skill might report in future versions. Edit *counts* (e.g., "3 sentences split") are exempt because they are records of the skill's own actions, not measurements of external content.
+
+   **`python3` unavailable.** If `python3` itself is not on the user's path, the skill notes "Flesch diagnostic skipped — `python3` not found" in the summary and proceeds. The diagnostic is useful but not load-bearing for the skill's value.
+
+   **Note on LaTeX stripping.** The stripping in `flesch.py` is regex-based and intentionally aligned with the same never-touch zone definitions used by the editing logic. If `pandoc` is available on the user's system, a future version could use `pandoc -f latex -t plain` for higher-quality stripping; for v1, regex is good enough since the diagnostic is directional, not authoritative.
 8. **Emit reports** (see Output bundle).
 9. **Halt cases:**
    - No candidates found → report "nothing to tighten — prose is already tight" + Flesch numbers as confirmation. Encouraging, not a failure.
