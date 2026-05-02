@@ -62,3 +62,72 @@ def test_strip_unknown_command_with_arg():
 def test_collapse_whitespace():
     text = "Lots\n\nof\t  white   space."
     assert flesch.strip_latex(text) == "Lots of white space."
+
+
+# --- strip_latex: math, environments, comments ---
+
+def test_strip_inline_math_dollar():
+    text = "The value $x = 5$ is interesting."
+    assert flesch.strip_latex(text) == "The value is interesting."
+
+
+def test_strip_display_math_dollar():
+    text = "Then $$y = mx + b$$ holds."
+    assert flesch.strip_latex(text) == "Then holds."
+
+
+def test_strip_display_math_bracket():
+    text = "Then \\[y = mx + b\\] holds."
+    assert flesch.strip_latex(text) == "Then holds."
+
+
+def test_strip_inline_math_paren():
+    text = "Note \\(x = 5\\) clearly."
+    assert flesch.strip_latex(text) == "Note clearly."
+
+
+def test_strip_equation_environment():
+    text = "Result: \\begin{equation} a^2 + b^2 = c^2 \\end{equation} thus."
+    assert flesch.strip_latex(text) == "Result: thus."
+
+
+def test_strip_align_environment():
+    text = "We have \\begin{align} x &= 1 \\\\ y &= 2 \\end{align} as expected."
+    assert flesch.strip_latex(text) == "We have as expected."
+
+
+def test_strip_verbatim_environment():
+    text = 'Code:\n\\begin{verbatim}\nprint("hi")\n\\end{verbatim}\nDone.'
+    assert flesch.strip_latex(text) == "Code: Done."
+
+
+def test_strip_lstlisting_environment():
+    text = "Code:\n\\begin{lstlisting}\nx = 1\n\\end{lstlisting}\nDone."
+    assert flesch.strip_latex(text) == "Code: Done."
+
+
+def test_strip_minted_environment():
+    text = "Code:\n\\begin{minted}{python}\nx = 1\n\\end{minted}\nDone."
+    assert flesch.strip_latex(text) == "Code: Done."
+
+
+def test_strip_verb_inline():
+    text = "Run \\verb|grep foo| to search."
+    assert flesch.strip_latex(text) == "Run to search."
+
+
+def test_strip_comments():
+    text = "Real text. % this is a comment\nMore text."
+    assert flesch.strip_latex(text) == "Real text. More text."
+
+
+def test_preserve_escaped_percent():
+    text = "Growth was 50\\% last year."
+    result = flesch.strip_latex(text)
+    assert "Growth was 50" in result
+    assert "last year" in result
+
+
+def test_strip_caption():
+    text = "See figure. \\caption{A nice plot of results.} The plot shows facts."
+    assert flesch.strip_latex(text) == "See figure. The plot shows facts."
