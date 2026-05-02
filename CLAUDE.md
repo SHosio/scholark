@@ -21,7 +21,7 @@ The `research-brainstorm` skill dispatches both agents in parallel and synthesiz
 2. **study-design** — Conversational study design formalization (IVs, DVs, design type, sampling, procedure)
 3. **analysis-plan** — Pre-registration-ready statistical analysis specification
 4. **study-validator** — Completeness checklist with severity-rated gaps
-5. **literature-blind-spots** — Accepts .tex/.md/.pdf drafts, searches for citation gaps, outputs HTML report
+5. **literature-blind-spots** — Accepts .tex drafts (.md as fallback), searches for citation gaps, outputs HTML report
 6. **paper-review** — Pre-submission review against common rejection patterns at top HCI venues (CHI, CSCW, UIST, DIS, TOCHI, IJHCS)
 7. **prose-tighten** — Tightens academic prose in `.tex` (split long sentences, cut fluff, fix nominalizations) without losing field-specific terminology. Reports a real Flesch diagnostic via `textstat`; never hallucinates scores.
 

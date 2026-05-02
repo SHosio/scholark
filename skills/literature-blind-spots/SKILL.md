@@ -1,6 +1,6 @@
 ---
 name: literature-blind-spots
-description: Analyze a draft paper for literature gaps and find real papers to fill them. Use when the user has a .tex, .md, or .pdf draft and wants to find missing references, blind spots in related work, or papers that could strengthen their argument. Also triggers on "find what's missing", "blind spots", "gaps in my references", or "what am I not citing".
+description: Analyze a draft paper for literature gaps and find real papers to fill them. Use when the user has a .tex draft (or .md fallback) and wants to find missing references, blind spots in related work, or papers that could strengthen their argument. Also triggers on "find what's missing", "blind spots", "gaps in my references", or "what am I not citing".
 ---
 
 # Literature Blind Spots
@@ -13,7 +13,7 @@ Analyze a draft paper to identify gaps in its literature coverage, then use the 
 
 ## Step 1: Read the Paper
 
-Read the user's draft file (.tex, .md, or .pdf). Focus on:
+Read the user's draft file (`.tex` is the expected format; `.md` is acceptable as a fallback). Focus on:
 - **Claims made** — What does the paper assert? What does it take for granted?
 - **Related work coverage** — What fields, methods, and frameworks are cited?
 - **Methods** — What methodological approach is used? Are there precedents not cited?

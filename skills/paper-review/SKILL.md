@@ -1,6 +1,6 @@
 ---
 name: paper-review
-description: Review an HCI paper draft for common rejection patterns before submission. Accepts .tex, .md, or .pdf files. Use when the user says "review my paper", "what would reviewers say", "check my draft", "is this ready to submit", or "pre-submission review".
+description: Review an HCI paper draft for common rejection patterns before submission. Accepts .tex (expected) or .md (fallback). Use when the user says "review my paper", "what would reviewers say", "check my draft", "is this ready to submit", or "pre-submission review".
 ---
 
 # Paper Review
@@ -11,7 +11,7 @@ Review an HCI paper draft against the most common reasons papers get rejected fr
 
 ## Step 1: Read the Paper
 
-Read the user's draft file (.tex, .md, or .pdf). Read it fully before making any judgments. Map the paper's structure: introduction, related work, methods, results, discussion, conclusion.
+Read the user's draft file (`.tex` is the expected format; `.md` is acceptable as a fallback). Read it fully before making any judgments. Map the paper's structure: introduction, related work, methods, results, discussion, conclusion.
 
 ## Step 2: Review Against Common Rejection Patterns
 
