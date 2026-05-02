@@ -107,21 +107,9 @@ Point to relevant skills:
 - **Don't flag style preferences.** This is not about your preferred writing style. Focus on issues that would cause rejection.
 - **Ground your review in what top HCI venues actually expect.** Not generic academic writing advice.
 
-## Citation Accuracy — CRITICAL
+## Citation Accuracy
 
-If the review touches references, author names, DOIs, or publication metadata, you MUST follow the scholark Citation Accuracy policy in full: see `../../CITATION-ACCURACY.md` (at the scholark plugin root).
-
-Key rules that apply every time metadata is produced:
-
-- **Copy metadata verbatim.** Never expand initials into given names. Never abbreviate full names into initials. Never merge conflicting strings from different sources.
-- **Never trust your own knowledge of authors or titles.** Your training data will cause you to "recognize" famous researchers where they don't belong. This is hallucination.
-- **DOI metadata over gut feeling.** If metadata contradicts your expectation, the metadata is right.
-- **Flag, do not fill.** If a field is ambiguous, partial, or only returned as initials, mark it `⚠ MANUAL CHECK` with a one-line reason. Returning less information is always acceptable; fabricating information is never acceptable.
-- **Re-verify any citation data supplied by a sub-agent** via `fetch_paper_details` before passing it through to the user.
-
-Run the pre-output checklist in `CITATION-ACCURACY.md` before emitting the review.
-
-**The user is always the final authority on citation accuracy.**
+If the review touches references, follow the scholark Citation Accuracy policy in `../../CITATION-ACCURACY.md` (at the scholark plugin root). Run its pre-output checklist before emitting the review. The core rules: copy metadata verbatim, never expand initials, never reconcile conflicting name strings across sources, re-verify any subagent-supplied citation via `fetch_paper_details`, and flag rather than fill when fields are partial or ambiguous. The user is always the final authority on citation accuracy.
 
 ## Session log (reproducibility artefact)
 
