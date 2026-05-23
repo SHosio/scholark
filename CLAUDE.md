@@ -10,20 +10,22 @@ Scholark is a Claude Code plugin for HCI researchers. It provides research desig
 
 ## Architecture
 
-### Two-Agent System
+### Three-Agent System
 - **research-ideator** (`agents/research-ideator.md`): Creative idea generation using web search + academic search. Runs on Sonnet.
-- **research-critic** (`agents/research-critic.md`): Adversarial reviewer using academic search only (web search deliberately disabled via `disallowedTools`). Runs on Sonnet.
+- **research-critic** (`agents/research-critic.md`): Adversarial reviewer using academic search only (web search deliberately disabled). Runs on Sonnet.
+- **citation-verifier** (`agents/citation-verifier.md`): Read-only verifier dispatched by `citation-integrity`. One agent per cited paper, parallel. `tools: Read` restricts it to local source markdown so the no-independent-fetching rule is structural, not just prose. Runs on Sonnet.
 
-The `research-brainstorm` skill dispatches both agents in parallel and synthesizes their outputs.
+The `research-brainstorm` skill dispatches the two research agents in parallel and synthesizes their outputs. The `citation-integrity` skill fan-outs one `citation-verifier` per citekey and consolidates verdicts into a single audit report.
 
-### Seven Skills
-1. **research-brainstorm** — Coordinates both agents, produces ranked ideas with risk assessment
-2. **study-design** — Conversational study design formalization (IVs, DVs, design type, sampling, procedure)
-3. **analysis-plan** — Pre-registration-ready statistical analysis specification
-4. **study-validator** — Completeness checklist with severity-rated gaps
-5. **literature-blind-spots** — Accepts .tex drafts (.md as fallback), searches for citation gaps, outputs HTML report
-6. **paper-review** — Pre-submission review against common rejection patterns at top HCI venues (CHI, CSCW, UIST, DIS, TOCHI, IJHCS)
-7. **prose-tighten** — Tightens academic prose in `.tex` (split long sentences, cut fluff, fix nominalizations) without losing field-specific terminology. Reports a real Flesch diagnostic via `textstat`; never hallucinates scores.
+### Eight Skills
+1. **research-brainstorm**: Coordinates the two research agents, produces ranked ideas with risk assessment
+2. **study-design**: Conversational study design formalization (IVs, DVs, design type, sampling, procedure)
+3. **analysis-plan**: Pre-registration-ready statistical analysis specification
+4. **study-validator**: Completeness checklist with severity-rated gaps
+5. **literature-blind-spots**: Accepts .tex drafts (.md as fallback), searches for citation gaps, outputs HTML report
+6. **paper-review**: Pre-submission review against common rejection patterns at top HCI venues (CHI, CSCW, UIST, DIS, TOCHI, IJHCS)
+7. **prose-tighten**: Tightens academic prose in `.tex` (split long sentences, cut fluff, fix nominalizations) without losing field-specific terminology. Reports a real Flesch diagnostic via `textstat`; never hallucinates scores.
+8. **citation-integrity**: Audits every inline citation in a `.tex` or `.md` manuscript. Dispatches one `citation-verifier` per cited paper to read the source in full and judge whether the manuscript's wording matches. Six verdicts (Verified / Partial / Misleading / Wrong / Unverifiable / Not audited) with suggested fixes. Offline by design; never fetches from the web or any database. Active enforcer of the policy in `CITATION-ACCURACY.md`. Reference docs live at repo root under `references/citation-integrity/` (verdict rubric, report and context-map templates).
 
 ### Scholark-1 Dependency
 Scholark-1 MCP is a separate install configured per-project. Skills that need it (literature-blind-spots, research-brainstorm) check for its availability and guide the user to install it if missing. Skills that don't need it (study-design, analysis-plan, study-validator) work fully standalone.

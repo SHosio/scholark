@@ -9,6 +9,7 @@ For full-powered academic literature search, pair with [Scholark-1](https://gith
 ### Agents
 - **research-ideator**: Creative, web-augmented agent that generates divergent research ideas from current trends, adjacent fields, and unconventional angles
 - **research-critic**: Rigorous adversarial reviewer grounded in published literature and HCI methodology conventions
+- **citation-verifier**: Read-only agent dispatched by `citation-integrity`. One per cited paper. Judges whether the manuscript's wording matches what the source actually says. No web, no MCP, only local source markdown
 
 ### Skills
 - `/scholark:research-brainstorm`: Explore a research question from multiple angles using both agents, then converge on the 2-3 strongest options
@@ -18,10 +19,11 @@ For full-powered academic literature search, pair with [Scholark-1](https://gith
 - `/scholark:paper-review`: Pre-submission review against common rejection patterns at top HCI venues
 - `/scholark:literature-blind-spots`: Analyze a draft paper for citation gaps and find real papers to fill them
 - `/scholark:prose-tighten`: Tighten `.tex` prose without losing field-specific terminology. Splits long sentences, cuts fluff, fixes nominalizations. Asks before touching technical terms
+- `/scholark:citation-integrity`: Audit every inline citation in a `.tex` or `.md` manuscript. Spawns one verifier per cited paper, reads each source in full, and flags Wrong, Misleading, Partial, Unverifiable, or Not audited citations with suggested fixes. Offline by design
 
 ### What works without Scholark-1
 
-The **study-design**, **analysis-plan**, **study-validator**, and **prose-tighten** skills work fully on their own. No MCP needed.
+The **study-design**, **analysis-plan**, **study-validator**, **prose-tighten**, and **citation-integrity** skills work fully on their own. No MCP needed.
 
 The **research-brainstorm** and **paper-review** skills work partially without Scholark-1. Brainstorm's critic agent loses its ability to ground critiques in published work, and paper-review can't verify claims against literature.
 
@@ -102,9 +104,10 @@ A typical session flows through the skills in order:
 4. **Validate**: Run a completeness check before piloting
 5. **Tighten**: When you have a draft, run `prose-tighten` on the `.tex` to clean up sentence-level prose without touching your terminology
 6. **Review**: Run `paper-review` on the tightened draft to catch structural issues reviewers will flag
-7. **You**: Read the output. Apply judgment. Decide what stays, what goes, and what needs rethinking. AI can generate options at scale, but taste, conviction, and knowing when something *feels wrong* are yours alone. That's not a limitation of the tool. That's the point.
+7. **Audit**: Run `citation-integrity` once the citation set is stable. Each cited paper is read in full and the manuscript's wording is checked against it
+8. **You**: Read the output. Apply judgment. Decide what stays, what goes, and what needs rethinking. AI can generate options at scale, but taste, conviction, and knowing when something *feels wrong* are yours alone. That's not a limitation of the tool. That's the point.
 
-The literature blind spots skill works independently. Point it at a draft paper anytime.
+The literature blind spots and citation integrity skills both work independently. Point them at a draft anytime.
 
 ## Citation Accuracy Warning
 

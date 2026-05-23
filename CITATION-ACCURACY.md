@@ -66,3 +66,7 @@ Before emitting any citation or metadata to the user, verify:
 ## The Underlying Principle
 
 **The user is always the final authority on citation accuracy. Your job is to surface what the databases actually said, not to produce a polished final citation.** A verbatim-but-ugly citation is always better than a polished-but-fabricated one.
+
+## Related: claim-level verification
+
+The rules above govern metadata (who wrote it, what it is called, where it was published, what its DOI is). A separate question is whether the manuscript's wording around a citation matches what the cited paper actually says. For that, see `/scholark:citation-integrity`. It dispatches one `citation-verifier` agent per cited paper, reads each source in full from a local context folder, and flags Wrong, Misleading, Partial, Unverifiable, and Not audited citations against the verdict rubric at `references/citation-integrity/verdict-rubric.md`. The two layers are complementary: metadata integrity ensures the citation points at the right paper; citation-integrity ensures the surrounding sentence honestly represents that paper.
