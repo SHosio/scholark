@@ -61,7 +61,7 @@ The script reports which citekeys have a corresponding `<citekey>.md` in the con
    ```bash
    bash <SKILL_BASE_DIR>/scripts/convert_pdfs.sh <pdf-dir> <mapping.json> <context-folder>
    ```
-   The script wraps `marker_single` (from `pip install marker-pdf`), writes each PDF as `<citekey>.md` with YAML frontmatter (`source_pdf`, `converted_date`, `num_images`), and deletes the source PDFs unless `--keep-pdfs` is passed. After conversion, re-run Step 3. If `marker_single` or `jq` are missing, the script exits with install instructions; surface them to the user and do not attempt an alternative converter silently.
+   The script wraps `marker_single` (from `pip install marker-pdf`), writes each PDF as `<citekey>.md` with YAML frontmatter (`source_pdf`, `converted_date`, `num_images`), and places a bibkey-named copy of the PDF at `<context-folder>/<citekey>.pdf`. Both the markdown and the PDF end up in the context folder, both named after the citekey. The script never deletes the source PDF. After conversion, re-run Step 3. If `marker_single` or `jq` are missing, the script exits with install instructions; surface them to the user and do not attempt an alternative converter silently.
 
 2. **Find the sources first by their own means.** Suggest this explicitly: institutional access, preprint servers, contacting authors. The skill stays out of this loop on purpose; the user has access channels the skill does not.
 
@@ -133,11 +133,13 @@ These rules apply on every invocation. They are constraints, not heuristics.
 
 7. **Prose conventions.** The audit report, the context map, and all suggested-fix wording follow the same two rules: no em-dashes (`—`), no "not X, but Y" antithesis. Use periods, commas, parentheses, or rewrites instead. These rules apply only to text the skill writes; the manuscript itself is not silently rewritten, but the skill flags such violations in a small "Style notes" section in the audit report when it spots them in passing.
 
+8. **Never delete source PDFs.** Converting a PDF to markdown keeps both files. The context folder ends up with `<citekey>.md` and `<citekey>.pdf`, both named after the citekey, and the original PDF in the source directory is left untouched. The skill, the verifier agents, and the apply-fixes pass never remove, move, or overwrite a user's PDF. If disk usage is a concern the user removes their own copies; the skill does not do it for them.
+
 ## Bundled resources
 
 - `scripts/extract_citations.py`: parses LaTeX and Pandoc Markdown manuscripts for citation occurrences with surrounding claim sentences.
 - `scripts/check_coverage.py`: cross-checks citekeys against the context folder; surfaces bibtex titles for missing sources.
-- `scripts/convert_pdfs.sh`: wraps `marker_single` to convert PDFs to `<citekey>.md` with YAML frontmatter.
+- `scripts/convert_pdfs.sh`: wraps `marker_single` to convert PDFs to `<citekey>.md` with YAML frontmatter, and keeps a bibkey-named copy of the source PDF at `<citekey>.pdf` in the same folder. Never deletes the source PDF.
 - `../../agents/citation-verifier.md`: the dedicated read-only agent dispatched in Step 4. Self-contained: verdict definitions and per-claim format are embedded in the agent body.
 - `../../references/citation-integrity/verdict-rubric.md`: full rubric with calibration examples. Use for borderline cases the agent surfaces, and as a reference document for the user.
 - `../../references/citation-integrity/audit-report-template.md`: layout for the synthesis report.

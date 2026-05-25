@@ -2,7 +2,7 @@
 # Convert PDFs to <citekey>.md in a context folder, using `marker_single`.
 #
 # Usage:
-#   convert_pdfs.sh <pdf-dir> <mapping.json> <context-folder> [--keep-pdfs]
+#   convert_pdfs.sh <pdf-dir> <mapping.json> <context-folder>
 #
 # mapping.json shape (one of):
 #   [{"pdf": "wherearewenow.pdf", "citekey": "Riegel2021"}, ...]
@@ -12,24 +12,24 @@
 #   2. Read the generated .md, count images.
 #   3. Write `<context-folder>/<citekey>.md` with YAML frontmatter:
 #         source_pdf, converted_date, num_images
-#   4. Delete the source PDF, unless --keep-pdfs.
+#   4. Place a bibkey-named copy of the PDF at `<context-folder>/<citekey>.pdf`.
+#
+# The source PDF is NEVER deleted. Both the markdown and the PDF end up in the
+# context folder, both named after the bibtex citekey. The original PDF in the
+# source directory is left untouched.
 #
 # Requires: marker_single (pip install marker-pdf), jq, python3.
 
 set -euo pipefail
 
 if [[ $# -lt 3 ]]; then
-  echo "Usage: $0 <pdf-dir> <mapping.json> <context-folder> [--keep-pdfs]" >&2
+  echo "Usage: $0 <pdf-dir> <mapping.json> <context-folder>" >&2
   exit 2
 fi
 
 PDF_DIR="$1"
 MAPPING="$2"
 CONTEXT_DIR="$3"
-KEEP_PDFS=false
-if [[ "${4:-}" == "--keep-pdfs" ]]; then
-  KEEP_PDFS=true
-fi
 
 if ! command -v marker_single >/dev/null 2>&1; then
   echo "marker_single not found on PATH. Install with: pip install marker-pdf" >&2
@@ -87,10 +87,15 @@ for i in $(seq 0 $((count - 1))); do
     cat "$GEN_MD"
   } > "$OUT_MD"
 
-  if [[ "$KEEP_PDFS" == "false" ]]; then
-    rm "$PDF_PATH"
-    echo "[DONE] $CITEKEY.md ($NUM_IMG images), deleted source PDF"
+  # Keep the PDF: place a bibkey-named copy in the context folder alongside the
+  # markdown. Never delete the original source PDF.
+  OUT_PDF="$CONTEXT_DIR/$CITEKEY.pdf"
+  if [[ "$PDF_PATH" -ef "$OUT_PDF" ]]; then
+    :  # source already is the bibkey-named PDF in the context folder
+  elif [[ -f "$OUT_PDF" ]]; then
+    echo "[KEEP] $CITEKEY.pdf already present in context folder"
   else
-    echo "[DONE] $CITEKEY.md ($NUM_IMG images), source PDF kept"
+    cp "$PDF_PATH" "$OUT_PDF"
   fi
+  echo "[DONE] $CITEKEY.md + $CITEKEY.pdf ($NUM_IMG images); source PDF preserved"
 done
